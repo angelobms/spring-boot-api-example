@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import br.com.bmsti.api.utils.PasswordUtils;
+
 @SpringBootApplication
 public class SpringBootApiExampleApplication {
 
@@ -21,8 +23,15 @@ public class SpringBootApiExampleApplication {
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
 			System.out.println("Amount of elements per page = " + this.qtdPerPage);
+			
+			String passwordEncoded = PasswordUtils.generateBCrypt("123456");
+			System.out.println("Password encoded: " + passwordEncoded);
+			
+			passwordEncoded = PasswordUtils.generateBCrypt("123456");
+			System.out.println("Password encoded again: " + passwordEncoded);
+			
+			System.out.println("Password valid: " + PasswordUtils.validatePassword("123456", passwordEncoded));
+			
 		};
-		
 	}
-	
 }
