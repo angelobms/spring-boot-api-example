@@ -8,5 +8,6 @@ public class SpringBootApiExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootApiExampleApplication.class, args);
+		System.out.println("Spring Boot API Example");
 	}
 }
