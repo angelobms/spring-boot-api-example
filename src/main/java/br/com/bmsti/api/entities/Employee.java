@@ -3,6 +3,7 @@ package br.com.bmsti.api.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -59,10 +60,10 @@ public class Employee implements Serializable {
 	private ProfileEnum profile;
 	
 	@Column(name = "DATE_CREATED", nullable = false)
-	private LocalDate dateCreated;
+	private Date dateCreated;
 		
 	@Column(name = "DATE_UPDATED", nullable = false)
-	private LocalDate dateUpdated;
+	private Date dateUpdated;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Company company;
@@ -138,19 +139,19 @@ public class Employee implements Serializable {
 		this.amountHoursLunch = amountHoursLunch;
 	}
 
-	public LocalDate getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(LocalDate dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public LocalDate getDateUpdated() {
+	public Date getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(LocalDate dateUpdated) {
+	public void setDateUpdated(Date dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
 
@@ -172,14 +173,14 @@ public class Employee implements Serializable {
 	
 	@PrePersist
 	public void prePersit() {
-		final LocalDate now = LocalDate.now();
+		final Date now = new Date();
 		dateCreated = now;
 		dateUpdated = now;
 	}
 	
 	@PreUpdate
 	public void preUpdate() {
-		dateUpdated = LocalDate.now();
+		dateUpdated = new Date();
 	}
 
 	@Override

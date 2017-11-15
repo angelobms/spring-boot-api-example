@@ -1,7 +1,7 @@
 package br.com.bmsti.api.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,11 +34,11 @@ public class Company implements Serializable {
 	private String cnpj;
 
 	@Column(name = "DATE_CREATED", nullable = false)
-	private LocalDate dateCreated;
-	
+	private Date dateCreated;
+
 	@Column(name = "DATE_UPDATED", nullable = false)
-	private LocalDate dateUpdated;
-	
+	private Date dateUpdated;
+
 	@OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Employee> employees;
 
@@ -54,6 +54,14 @@ public class Company implements Serializable {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -62,19 +70,19 @@ public class Company implements Serializable {
 		this.cnpj = cnpj;
 	}
 
-	public LocalDate getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(LocalDate dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public LocalDate getDateUpdated() {
+	public Date getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(LocalDate dateUpdated) {
+	public void setDateUpdated(Date dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
 
@@ -85,17 +93,17 @@ public class Company implements Serializable {
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
-	
+
 	@PrePersist
 	public void prePersist() {
-		final LocalDate now = LocalDate.now();
+		final Date now = new Date();
 		dateCreated = now;
 		dateUpdated = now;
 	}
-	
+
 	@PreUpdate
 	public void preUpdate() {
-		dateUpdated = LocalDate.now();
+		dateUpdated = new Date();
 	}
 
 	@Override

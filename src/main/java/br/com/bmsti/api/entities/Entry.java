@@ -3,6 +3,7 @@ package br.com.bmsti.api.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.bmsti.api.enums.TypeEnum;
 
@@ -30,8 +33,9 @@ public class Entry implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATE", nullable = false)
-	private LocalDateTime date;
+	private Date date;
 	
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -40,10 +44,10 @@ public class Entry implements Serializable {
 	private String location;
 	
 	@Column(name = "DATE_CREATED", nullable = false)
-	private LocalDate dateCreated;
+	private Date dateCreated;
 	
 	@Column(name = "DATE_UPDATED", nullable = false)
-	private LocalDate dateUpdated;
+	private Date dateUpdated;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TYPE", nullable = false)
@@ -64,11 +68,11 @@ public class Entry implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -88,19 +92,19 @@ public class Entry implements Serializable {
 		this.location = location;
 	}
 
-	public LocalDate getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreted(LocalDate dateCreated) {
+	public void setDateCreted(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public LocalDate getDateUpdated() {
+	public Date getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(LocalDate dateUpdated) {
+	public void setDateUpdated(Date dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
 
@@ -114,14 +118,14 @@ public class Entry implements Serializable {
 	
 	@PrePersist
 	public void prePersit() {
-		final LocalDate now = LocalDate.now();
+		final Date now = new Date();
 		dateCreated = now;
 		dateUpdated = now;
 	}
 	
 	@PreUpdate
 	public void preUpdate() {
-		dateUpdated = LocalDate.now();
+		dateUpdated = new Date();
 	}
 
 	@Override
