@@ -31,7 +31,7 @@ public class SpringBootApiExampleApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
-			System.out.println("Amount of elements per page = " + this.qtdPerPage);
+			/*System.out.println("Amount of elements per page = " + this.qtdPerPage);
 			
 			String passwordEncoded = PasswordUtils.generateBCrypt("123456");
 			System.out.println("Password encoded: " + passwordEncoded);
@@ -61,7 +61,7 @@ public class SpringBootApiExampleApplication {
 			
 			this.companyRepository.delete(1L);
 			companies = companyRepository.findAll();
-			System.out.println("Companies: " + companies.size());
+			System.out.println("Companies: " + companies.size());*/
 			
 		};
 	}
