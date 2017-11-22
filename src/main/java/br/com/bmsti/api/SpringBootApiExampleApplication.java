@@ -1,25 +1,18 @@
 package br.com.bmsti.api;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import br.com.bmsti.api.entities.Company;
-import br.com.bmsti.api.repositories.CompanyRepository;
-import br.com.bmsti.api.services.CompanyService;
-import br.com.bmsti.api.utils.PasswordUtils;
-
 @SpringBootApplication
 public class SpringBootApiExampleApplication {
 
-	@Autowired
-	private CompanyService companyService;
+	//@Autowired
+	//private CompanyService companyService;
 	
+	//@Autowired
 	//private CompanyRepository companyRepository;
 	
 	@Value("${pagination_qtd_per_page}")
@@ -63,9 +56,9 @@ public class SpringBootApiExampleApplication {
 			
 			this.companyRepository.delete(1L);
 			companies = companyRepository.findAll();
-			System.out.println("Companies: " + companies.size());*/
+			System.out.println("Companies: " + companies.size());
 			
-			this.companyService.testService();
+			this.companyService.testService();*/
 			
 		};
 	}
