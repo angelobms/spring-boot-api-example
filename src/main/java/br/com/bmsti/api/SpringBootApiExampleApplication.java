@@ -11,14 +11,16 @@ import org.springframework.context.annotation.Bean;
 
 import br.com.bmsti.api.entities.Company;
 import br.com.bmsti.api.repositories.CompanyRepository;
+import br.com.bmsti.api.services.CompanyService;
 import br.com.bmsti.api.utils.PasswordUtils;
 
 @SpringBootApplication
 public class SpringBootApiExampleApplication {
 
 	@Autowired
-	private CompanyRepository companyRepository;
+	private CompanyService companyService;
 	
+	//private CompanyRepository companyRepository;
 	
 	@Value("${pagination_qtd_per_page}")
 	private int qtdPerPage;
@@ -62,6 +64,8 @@ public class SpringBootApiExampleApplication {
 			this.companyRepository.delete(1L);
 			companies = companyRepository.findAll();
 			System.out.println("Companies: " + companies.size());*/
+			
+			this.companyService.testService();
 			
 		};
 	}
