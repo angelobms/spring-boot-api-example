@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>SpringBootApiExample</name>
-	<description>Spring Boot API Example</description>
+	<description>Spring Boot API Example</description>	
 	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -89,7 +89,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 
