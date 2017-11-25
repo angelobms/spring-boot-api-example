@@ -51,7 +51,7 @@ public class VersionApiControlle {
 	 */
 	@GetMapping(value = "/hello/{name}", headers = "X-API-Version=v2")
 	public ResponseEntity<String> helloHeaderNameV2(@PathVariable("name") String name) {
-		return ResponseEntity.ok(String.format("API Header v2: Hello %s! ", name));
+		return ResponseEntity.ok(String.format("API Header v2: Hello %s! ", name)); 
 	}
 
 }
