@@ -1,4 +1,4 @@
-package br.com.bmsti.api;
+package br.com.bmsti.api.swagger;
 
 import org.springframework.context.annotation.Configuration;
 
