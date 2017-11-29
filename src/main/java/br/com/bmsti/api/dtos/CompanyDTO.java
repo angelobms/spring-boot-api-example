@@ -8,12 +8,12 @@ public class CompanyDTO {
 
 	private Long id;
 	
-	@NotEmpty(message = "Razão social não pode ser vazia.")
-	@Length(min = 5, max = 200, message = "Razão social deve conter entre 5 a 200 caracteres.")
+	@NotEmpty(message = "Name can not be empty.")
+	@Length(min = 5, max = 200, message = "Name must contain between 5 and 200 characters.")
 	private String name;
 	
-	@NotEmpty(message = "CNPJ não pode ser vazio.")
-	@CNPJ(message = "CNPJ inválido.")
+	@NotEmpty(message = "CNPJ can not be empty.")
+	@CNPJ(message = "CNPJ invalid.")
 	private String cnpj;
 
 	public CompanyDTO() {

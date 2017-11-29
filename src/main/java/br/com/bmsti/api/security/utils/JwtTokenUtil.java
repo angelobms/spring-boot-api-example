@@ -23,7 +23,7 @@ public class JwtTokenUtil {
 	private String secret;
 	
 	@Value("$jwt.expiration")
-	private Long expiration;
+	private String expiration;
 	
 	/**
 	 * Get the username (email) contained in token JWT. 

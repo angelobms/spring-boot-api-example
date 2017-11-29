@@ -1,64 +1,42 @@
 package br.com.bmsti.api;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
-public class SpringBootApiExampleApplication {
+import br.com.bmsti.api.security.entities.User;
+import br.com.bmsti.api.security.enums.RoleEnum;
+import br.com.bmsti.api.security.repositories.UserRepository;
+import br.com.bmsti.api.utils.PasswordUtils;
 
-	//@Autowired
-	//private CompanyService companyService;
-	
-	//@Autowired
-	//private CompanyRepository companyRepository;
-	
-	@Value("${pagination_qtd_per_page}")
-	private int qtdPerPage;
+@SpringBootApplication
+public class SpringBootApiExampleApplication {	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootApiExampleApplication.class, args);
 		System.out.println("Spring Boot API Example");
 	}
+
+	@Autowired
+	private UserRepository userReposirory;
 	
 	@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
-			/*System.out.println("Amount of elements per page = " + this.qtdPerPage);
 			
-			String passwordEncoded = PasswordUtils.generateBCrypt("123456");
-			System.out.println("Password encoded: " + passwordEncoded);
+			User user = new User();
+			user.setEmail("user@test.com.br");
+			user.setRole(RoleEnum.ROLE_USER);
+			user.setPassword(PasswordUtils.generateBCrypt("123456"));
+			this.userReposirory.save(user);
 			
-			passwordEncoded = PasswordUtils.generateBCrypt("123456");
-			System.out.println("Password encoded again: " + passwordEncoded);
-			
-			System.out.println("Password valid: " + PasswordUtils.validatePassword("123456", passwordEncoded));
-			
-			Company company = new Company();
-			company.setName("BMSTI");
-			company.setCnpj("32659847000187");
-			
-			this.companyRepository.save(company);
-			
-			List<Company> companies = companyRepository.findAll();
-			companies.forEach(System.out::println);
-			
-			Company companyDB = companyRepository.findOne(1L);
-			System.out.println("Compony per ID: " + companyDB);
-			
-			companyDB.setName("BMSTI WEB");
-			this.companyRepository.save(companyDB);
-					
-			Company companyCNPJ = companyRepository.findByCnpj("32659847000187");
-			System.out.println("Company per CNPJ: " + companyCNPJ);
-			
-			this.companyRepository.delete(1L);
-			companies = companyRepository.findAll();
-			System.out.println("Companies: " + companies.size());
-			
-			this.companyService.testService();*/
+			User admin = new User();
+			user.setEmail("admin@test.com.br");
+			user.setRole(RoleEnum.ROLE_ADMIN);
+			user.setPassword(PasswordUtils.generateBCrypt("123456"));
+			this.userReposirory.save(admin);
 			
 		};
 	}

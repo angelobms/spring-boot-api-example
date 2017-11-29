@@ -3,6 +3,7 @@ package br.com.bmsti.api.controllers;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import br.com.bmsti.api.responses.Response;
 public class CompanyController {
 	
 	@GetMapping(value = "/{name}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String getName(@PathVariable String name) {
 		return "Nome company: " + name;
 	}
