@@ -33,9 +33,9 @@ public class SpringBootApiExampleApplication {
 			this.userReposirory.save(user);
 			
 			User admin = new User();
-			user.setEmail("admin@test.com.br");
-			user.setRole(RoleEnum.ROLE_ADMIN);
-			user.setPassword(PasswordUtils.generateBCrypt("123456"));
+			admin.setEmail("admin@test.com.br");
+			admin.setRole(RoleEnum.ROLE_ADMIN);
+			admin.setPassword(PasswordUtils.generateBCrypt("123456"));
 			this.userReposirory.save(admin);
 			
 		};
