@@ -20,10 +20,20 @@ import javax.persistence.TemporalType;
 
 import br.com.bmsti.api.enums.TypeEnum;
 
+/** 
+* Entity <b>Entry</b> represents the table <b>entry</b> in database <b>point</b>. 
+* A persistent object of this class represents a record in the table entry.
+* 
+* @author Angelo Brandao - (angelobms@gmail.com)
+* @version 1.0 
+*/
 @Entity
 @Table(name = "entry")
 public class Entry implements Serializable {
 
+	/**
+	 * Serial Version UID
+	 */
 	private static final long serialVersionUID = -5498709644766897410L;
 
 	@Id

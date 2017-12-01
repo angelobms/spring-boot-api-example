@@ -11,6 +11,13 @@ import javax.persistence.Table;
 
 import br.com.bmsti.api.security.enums.RoleEnum;
 
+/** 
+* Entity <b>User</b> represents the table <b>user</b> in database <b>point</b>. 
+* A persistent object of this class represents a record in the table user.
+* 
+* @author Angelo Brandao - (angelobms@gmail.com)
+* @version 1.0 
+*/
 @Entity
 @Table(name = "user")
 public class User {

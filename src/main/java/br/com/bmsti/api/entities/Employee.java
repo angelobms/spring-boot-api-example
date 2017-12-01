@@ -2,7 +2,6 @@ package br.com.bmsti.api.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -23,10 +22,20 @@ import javax.persistence.Table;
 
 import br.com.bmsti.api.enums.ProfileEnum;
 
+/** 
+* Entity <b>Employee</b> represents the table <b>employee</b> in database <b>point</b>. 
+* A persistent object of this class represents a record in the table employee.
+* 
+* @author Angelo Brandao - (angelobms@gmail.com)
+* @version 1.0 
+*/
 @Entity
-@Table(name = "Employee")
+@Table(name = "employee")
 public class Employee implements Serializable {
 	
+	/**
+	 * Serial Version UID
+	 */
 	private static final long serialVersionUID = -2338544294966134486L;
 
 	@Id

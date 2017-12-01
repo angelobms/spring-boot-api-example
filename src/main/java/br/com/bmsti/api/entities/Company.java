@@ -16,10 +16,20 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+/** 
+* Entity <b>Company</b> represents the table <b>company</b> in database <b>point</b>. 
+* A persistent object of this class represents a record in the table company.
+* 
+* @author Angelo Brandao - (angelobms@gmail.com)
+* @version 1.0 
+*/
 @Entity
-@Table(name = "COMPANY")
+@Table(name = "company")
 public class Company implements Serializable {
 
+	/**
+	 * Serial Version UID
+	 */
 	private static final long serialVersionUID = -2567047597130796634L;
 
 	@Id
