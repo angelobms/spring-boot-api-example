@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,7 +54,8 @@ public class AuthenticationController {
 	 * @return esponseEntity<Response<TokenDTO>>
 	 * @throws AuthenticationException
 	 */
-	public ResponseEntity<Response<TokenDTO>> generateTokenJwt(@Valid JwtAuthenticationDTO jwtAuthenticationDTO,
+	@PostMapping
+	public ResponseEntity<Response<TokenDTO>> generateTokenJwt(@Valid @RequestBody JwtAuthenticationDTO jwtAuthenticationDTO,
 			BindingResult result) throws AuthenticationException {
 		Response<TokenDTO> response = new Response<>();
 

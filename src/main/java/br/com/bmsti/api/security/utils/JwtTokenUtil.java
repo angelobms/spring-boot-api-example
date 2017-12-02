@@ -1,5 +1,8 @@
 package br.com.bmsti.api.security.utils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +25,8 @@ public class JwtTokenUtil {
 	@Value("${jwt.secret}")
 	private String secret;
 	
-	@Value("$jwt.expiration")
-	private String expiration;
+	@Value("${jwt.expiration}")
+	private Long expiration;
 	
 	/**
 	 * Get the username (email) contained in token JWT. 
@@ -124,6 +127,15 @@ public class JwtTokenUtil {
 	 * @return Date
 	 */
 	private Date genareteExpirationDate() {
+		/*Date ts = null;
+		DateFormat formatter = new SimpleDateFormat("EEE MMM dd hh:mm:ss zzz yyyy");
+		try {
+			ts = (Date)formatter.parse(System.currentTimeMillis() + expiration + 1000);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ts;*/		
 		return new Date(System.currentTimeMillis() + expiration + 1000);
 	}
 	

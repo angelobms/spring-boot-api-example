@@ -26,7 +26,7 @@ public class SpringBootApiExampleApplication {
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
 			
-			User user = new User();
+			/*User user = new User();
 			user.setEmail("user@test.com.br");
 			user.setRole(RoleEnum.ROLE_USER);
 			user.setPassword(PasswordUtils.generateBCrypt("123456"));
@@ -36,7 +36,7 @@ public class SpringBootApiExampleApplication {
 			admin.setEmail("admin@test.com.br");
 			admin.setRole(RoleEnum.ROLE_ADMIN);
 			admin.setPassword(PasswordUtils.generateBCrypt("123456"));
-			this.userReposirory.save(admin);
+			this.userReposirory.save(admin);*/
 			
 		};
 	}
