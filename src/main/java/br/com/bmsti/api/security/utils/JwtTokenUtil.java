@@ -1,8 +1,5 @@
 package br.com.bmsti.api.security.utils;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,7 +95,7 @@ public class JwtTokenUtil {
 	 */
 	public String getToken(UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put(CLAIM_KEY_ROLE, userDetails.getUsername());
+		claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
 		userDetails.getAuthorities().forEach(authority -> claims.put(CLAIM_KEY_ROLE, authority.getAuthority()));
 		claims.put(CLAIM_KEY_CREATED, new Date());
 		

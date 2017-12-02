@@ -35,7 +35,7 @@ public class AuthenticationController {
 
 	private static final Logger log = LoggerFactory.getLogger(AuthenticationController.class);
 	private static final String TOKEN_HEADER = "Authorization";
-	private static final String BEARER_PREFIX = "Bearer ";
+	private static final String BMSTI_PREFIX = "bmsti ";
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -89,8 +89,8 @@ public class AuthenticationController {
 		Response<TokenDTO> response = new Response<>();
 		Optional<String> token = Optional.ofNullable(request.getHeader(TOKEN_HEADER));
 		
-		if (token.isPresent() && token.get().startsWith(BEARER_PREFIX)) {
-			token = Optional.of(token.get().substring(7));
+		if (token.isPresent() && token.get().startsWith(BMSTI_PREFIX)) {
+			token = Optional.of(token.get().substring(6));
 		}
 		
 		if (!token.isPresent()) {

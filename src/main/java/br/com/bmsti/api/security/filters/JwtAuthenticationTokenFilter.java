@@ -9,11 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -22,7 +20,7 @@ import br.com.bmsti.api.security.utils.JwtTokenUtil;
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
 	private static final String AUTH_HEADER = "Authorization";
-	private static final String BEARER_PREFIX = "Bearer ";
+	private static final String BMSTI_PREFIX = "bmsti ";
 
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -34,8 +32,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String token = request.getHeader(AUTH_HEADER);
-		if (token != null && token.startsWith(BEARER_PREFIX)) {
-			token = token.substring(7);
+		if (token != null && token.startsWith(BMSTI_PREFIX)) {
+			token = token.substring(6);
 		}
 		String username = jwtTokenUtil.getUsernameFromToken(token);
 
