@@ -126,16 +126,7 @@ public class JwtTokenUtil {
 	 * 
 	 * @return Date
 	 */
-	private Date genareteExpirationDate() {
-		/*Date ts = null;
-		DateFormat formatter = new SimpleDateFormat("EEE MMM dd hh:mm:ss zzz yyyy");
-		try {
-			ts = (Date)formatter.parse(System.currentTimeMillis() + expiration + 1000);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ts;*/		
+	private Date genareteExpirationDate() {		
 		return new Date(System.currentTimeMillis() + expiration + 1000);
 	}
 	
