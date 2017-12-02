@@ -99,6 +99,13 @@ public class AuthenticationController {
 			response.getErrors().add("Token invalid or expired.");
 		}
 		
+		if (!response.getErrors().isEmpty()) {
+			return ResponseEntity.badRequest().body(response);
+		}
+		
+		String refreshedToken = jwtTokenUtil.refreshToken(token.get());
+		response.setDate(new TokenDTO(refreshedToken));		
+		
 		return ResponseEntity.ok(response);
 	}
 }
