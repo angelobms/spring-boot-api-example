@@ -14,20 +14,20 @@ import br.com.bmsti.api.security.enums.RoleEnum;
 import br.com.bmsti.api.security.repositories.UserRepository;
 import br.com.bmsti.api.utils.PasswordUtils;
 
-@EnableCaching
+//@EnableCaching
 @SpringBootApplication
 public class SpringBootApiExampleApplication {	
 	
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootApiExampleApplication.class, args);
-		System.out.println("Spring Boot API Example");
-	}
-
 	@Autowired
 	private UserRepository userReposirory;
 	
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootApiExampleApplication.class, args);
+		System.out.println("Spring Boot API Example");
+	}
 	
 	@Bean
 	public CommandLineRunner commandLineRunner() {
