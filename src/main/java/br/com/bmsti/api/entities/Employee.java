@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,20 +20,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.bmsti.api.enums.ProfileEnum;
 
-/** 
-* Entity <b>Employee</b> represents the table <b>employee</b> in database <b>point</b>. 
-* A persistent object of this class represents a record in the table employee.
-* 
-* @author Angelo Brandao - (angelobms@gmail.com)
-* @version 1.0 
-*/
+/**
+ * Entity <b>Employee</b> represents the table <b>employee</b> in database
+ * <b>point</b>. A persistent object of this class represents a record in the
+ * table employee.
+ * 
+ * @author Angelo Brandao - (angelobms@gmail.com)
+ * @version 1.0
+ */
 @Entity
 @Table(name = "employee")
 public class Employee implements Serializable {
-	
+
 	/**
 	 * Serial Version UID
 	 */
@@ -42,44 +45,44 @@ public class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
-	
+
 	@Column(name = "NAME", nullable = false)
 	private String name;
-	
+
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
-	
+
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
-	
+
 	@Column(name = "CPF", unique = true, nullable = false)
 	private String cpf;
-	
+
 	@Column(name = "HOUR_VALUE")
 	private BigDecimal hourValue;
-	
+
 	@Column(name = "AMOUNT_HOURS_WORKED_DAY")
 	private Float amountHoursWorkedDay;
-	
+
 	@Column(name = "AMOUNT_HOURS_LUNCH")
 	private Float amountHoursLunch;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "PROFILE", nullable = false)
 	private ProfileEnum profile;
-	
+
 	@Column(name = "DATE_CREATED", nullable = false)
 	private Date dateCreated;
-		
+
 	@Column(name = "DATE_UPDATED", nullable = false)
 	private Date dateUpdated;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Company company;
-	
+
 	@OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Entry> entries;
-	
+
 	public Employee() {
 		super();
 	}
@@ -132,6 +135,11 @@ public class Employee implements Serializable {
 		this.hourValue = hourValue;
 	}
 
+	@Transient
+	public Optional<BigDecimal> getHourValueOpt() {
+		return Optional.ofNullable(hourValue);
+	}
+
 	public Float getAmountHoursWorkedDay() {
 		return amountHoursWorkedDay;
 	}
@@ -140,12 +148,30 @@ public class Employee implements Serializable {
 		this.amountHoursWorkedDay = amountHoursWorkedDay;
 	}
 
+	@Transient
+	public Optional<Float> getAmountHoursWorkedDayOpt() {
+		return Optional.ofNullable(amountHoursWorkedDay);
+	}
+
 	public Float getAmountHoursLunch() {
 		return amountHoursLunch;
 	}
 
 	public void setAmountHoursLunch(Float amountHoursLunch) {
 		this.amountHoursLunch = amountHoursLunch;
+	}
+
+	public ProfileEnum getProfile() {
+		return profile;
+	}
+
+	public void setProfile(ProfileEnum profile) {
+		this.profile = profile;
+	}
+
+	@Transient
+	public Optional<Float> getAmountHoursLunchOpt() {
+		return Optional.ofNullable(amountHoursLunch);
 	}
 
 	public Date getDateCreated() {
@@ -179,14 +205,14 @@ public class Employee implements Serializable {
 	public void setEntries(List<Entry> entries) {
 		this.entries = entries;
 	}
-	
+
 	@PrePersist
 	public void prePersit() {
 		final Date now = new Date();
 		dateCreated = now;
 		dateUpdated = now;
 	}
-	
+
 	@PreUpdate
 	public void preUpdate() {
 		dateUpdated = new Date();
@@ -199,10 +225,5 @@ public class Employee implements Serializable {
 				+ amountHoursLunch + ", profile=" + profile + ", dateCreated=" + dateCreated + ", dateUpdated="
 				+ dateUpdated + ", company=" + company + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 }

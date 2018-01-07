@@ -31,6 +31,14 @@ import br.com.bmsti.api.enums.TypeEnum;
 @Table(name = "entry")
 public class Entry implements Serializable {
 
+	public TypeEnum getType() {
+		return type;
+	}
+
+	public void setType(TypeEnum type) {
+		this.type = type;
+	}
+
 	/**
 	 * Serial Version UID
 	 */
