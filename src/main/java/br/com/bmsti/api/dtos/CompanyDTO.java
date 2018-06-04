@@ -4,12 +4,14 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import br.com.bmsti.api.enums.ErrorCode;
+
 public class CompanyDTO {
 
 	private Long id;
 	
-	@NotEmpty(message = "Name can not be empty.")
-	@Length(min = 5, max = 200, message = "Name must contain between 5 and 200 characters.")
+	@NotEmpty(message = ErrorCode.NOT_EMPTY)
+	@Length(min = 5, max = 200, message = ErrorCode.NUMBER_RANGE)
 	private String name;
 	
 	@NotEmpty(message = "CNPJ can not be empty.")
