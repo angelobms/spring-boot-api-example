@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
 import br.com.bmsti.api.security.repositories.UserRepository;
+import io.airbrake.javabrake.Notifier;
 
 @EnableCaching
 @SpringBootApplication
@@ -17,6 +18,11 @@ public class SpringBootApiExampleApplication {
 	private UserRepository userReposirory;
 	
 	public static void main(String[] args) {
+				
+		int projectId = 190935;
+	    String projectKey = "f7b9b3ef74e34c1e1d7700446eb4f0f6";
+	    Notifier notifier = new Notifier(projectId, projectKey);
+						
 		SpringApplication.run(SpringBootApiExampleApplication.class, args);
 		System.out.println("Spring Boot API Example");
 	}
