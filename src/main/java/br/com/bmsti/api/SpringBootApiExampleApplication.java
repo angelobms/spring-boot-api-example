@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import br.com.bmsti.api.security.repositories.UserRepository;
 import io.airbrake.javabrake.Notifier;
+import io.airbrake.javabrake.Notice;
 
 @EnableCaching
 @SpringBootApplication
@@ -23,6 +24,12 @@ public class SpringBootApiExampleApplication {
 	    String projectKey = "f7b9b3ef74e34c1e1d7700446eb4f0f6";
 	    Notifier notifier = new Notifier(projectId, projectKey);
 						
+	    notifier.addFilter(
+	    	    (Notice notice) -> {
+	    	      notice.setContext("environment", "production");
+	    	      return notice;
+	    	    });
+	    
 		SpringApplication.run(SpringBootApiExampleApplication.class, args);
 		System.out.println("Spring Boot API Example");
 	}
